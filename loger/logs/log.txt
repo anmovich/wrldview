@@ -1,0 +1,9 @@
+2026-11-16 00:21:13 loger.go:20: [debug] Logger started correctly!
+2026-11-16 00:21:13 main.go:15: [debug] Main start work
+2026-11-16 00:21:16 loger.go:20: [debug] Logger started correctly!
+2026-11-16 00:21:16 main.go:15: [debug] Main start work
+2026-11-16 00:22:59 loger.go:20: [debug] Logger started correctly!
+2026-11-16 00:22:59 main.go:15: [debug] Main start work
+2026-11-16 00:23:32 loger.go:20: [debug] Logger started correctly!
+2026-11-16 00:23:32 main.go:15: [info] Main
+2026-11-16 00:23:32 main.go:16: [debug] Main start work
