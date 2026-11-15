@@ -7,3 +7,8 @@
 2026-11-16 00:23:32 loger.go:20: [debug] Logger started correctly!
 2026-11-16 00:23:32 main.go:15: [info] Main
 2026-11-16 00:23:32 main.go:16: [debug] Main start work
+{"time":"2026-11-16T01:08:32.235843727+03:00","level":"INFO","msg":"logger init"}
+time=2026-11-16T01:09:23.432+03:00 level=INFO msg="logger init"
+time=2026-11-16T01:10:40.704+03:00 level=INFO msg="logger init"
+time=2026-11-16T01:16:35.801+03:00 level=INFO msg="logger init"
+time=2026-11-16T01:18:54.747+03:00 level=INFO msg="logger init"
