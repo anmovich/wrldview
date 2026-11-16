@@ -11,3 +11,9 @@ func New(repo repository.Repository) *Service {
 		Repo: repo,
 	}
 }
+
+func NewTest(repo repository.Repository) *Service {
+	return &Service{
+		Repo: repo,
+	}
+}

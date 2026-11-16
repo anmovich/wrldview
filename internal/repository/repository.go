@@ -6,3 +6,7 @@ type Repository struct {
 func New() *Repository {
 	return &Repository{}
 }
+
+func NewTest() *Repository {
+	return &Repository{}
+}

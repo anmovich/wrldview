@@ -9,10 +9,10 @@ import (
 
 type Server struct {
 	Port string
-	h    Handler
+	h    *Handler
 }
 
-func NewServer(h Handler) Server {
+func NewServer(h *Handler) Server {
 	return Server{
 		Port: fmt.Sprintf(":%s", os.Getenv("PORT")),
 		h:    h,
@@ -20,11 +20,11 @@ func NewServer(h Handler) Server {
 }
 
 func (s Server) Run() {
-	router := s.setup()
+	router := s.Setup()
 	router.Run(s.Port)
 }
 
-func (s Server) setup() *gin.Engine {
+func (s Server) Setup() *gin.Engine {
 	router := gin.Default()
 
 	router.POST("/ping", s.h.Ping)
