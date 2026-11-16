@@ -6,8 +6,8 @@ import (
 	"github.com/anmovich/wrldview/internal/repository"
 	"github.com/anmovich/wrldview/internal/service"
 	"github.com/anmovich/wrldview/internal/transport"
-	"github.com/anmovich/wrldview/loger"
 	"github.com/anmovich/wrldview/pkg/config"
+	"github.com/anmovich/wrldview/pkg/loger"
 )
 
 func main() {
