@@ -1,0 +1,7 @@
+{
+    "chat.titleBar.openInAgentsWindow.enabled": false,
+    "workbench.notifications.showInTitleBar": false,
+    "workbench.secondarySideBar.showLabels": false,
+    "workbench.activityBar.autoHide": false,
+    "editor.find.addExtraSpaceOnTop": true
+}

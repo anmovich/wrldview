@@ -2,7 +2,6 @@ package loger
 
 import (
 	"io"
-	"log"
 	"log/slog"
 	"os"
 )
@@ -18,6 +17,5 @@ func New() {
 	logger := slog.New(slog.NewTextHandler(io.MultiWriter(os.Stdout, file), nil))
 
 	slog.SetDefault(logger)
-	log.SetFlags(log.Ldate | log.Ltime)
 	slog.Debug("Logger start correctly")
 }
