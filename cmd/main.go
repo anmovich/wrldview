@@ -18,6 +18,6 @@ func main() {
 	repository := repository.New()
 	service := service.New(*repository)
 	handler := transport.New(*service)
-	server := transport.NewServer(*handler)
+	server := transport.NewServer(handler)
 	server.Run()
 }

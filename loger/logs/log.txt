@@ -25,3 +25,4 @@ time=2026-11-16T20:35:07.861+03:00 level=INFO msg="logger init"
 time=2026-11-16T20:35:07.861+03:00 level=INFO msg=:
 time=2026-11-16T20:36:06.283+03:00 level=INFO msg="logger init"
 time=2026-11-16T20:48:36.264+03:00 level=INFO msg="logger init"
+time=2026-11-16T23:32:53.822+03:00 level=INFO msg="logger init"
