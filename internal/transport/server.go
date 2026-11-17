@@ -29,5 +29,10 @@ func (s Server) Setup() *gin.Engine {
 
 	router.POST("/ping", s.h.Ping)
 
+	book := router.Group("/book")
+	{
+		book.POST("/", s.h.NewBook)
+	}
+
 	return router
 }
