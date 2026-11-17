@@ -5,7 +5,7 @@
 LOGPATH = path/to/logs
 PORT = 6767
 ``````
-##endpoints:
+## endpoints:
 
 `POST /book` - add book to base
 ```
