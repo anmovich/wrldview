@@ -20,6 +20,10 @@ func New(ctx context.Context) *Repository {
 		return nil
 	}
 
+	if err := conn.Ping(ctx); err != nil {
+		panic(err)
+	}
+
 	return &Repository{
 		ctx:  ctx,
 		Conn: conn,
@@ -31,7 +35,8 @@ func NewTest() *Repository {
 }
 
 func (r Repository) NewBook() error {
-	_, err := r.Conn.Exec(r.ctx, "CREATE DATABASE dadada")
+	_, err := r.Conn.Exec(r.ctx, "DROP TABLE atata;")
+
 	if err != nil {
 		return err
 	}

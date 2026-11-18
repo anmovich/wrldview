@@ -20,6 +20,8 @@ func main() {
 	service := service.New(*repository)
 	handler := transport.New(*service)
 	server := transport.NewServer(handler)
-	repository.NewBook()
+	if err := repository.NewBook(); err != nil {
+		slog.Error(err.Error())
+	}
 	server.Run()
 }

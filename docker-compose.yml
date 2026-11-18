@@ -1,0 +1,10 @@
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: anme
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - 5432:5432
