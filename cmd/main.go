@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log/slog"
 
 	"github.com/anmovich/wrldview/internal/repository"
@@ -15,9 +16,10 @@ func main() {
 	slog.Info("config init")
 	loger.New()
 	slog.Info("logger init")
-	repository := repository.New()
+	repository := repository.New(context.Background())
 	service := service.New(*repository)
 	handler := transport.New(*service)
 	server := transport.NewServer(handler)
+	repository.NewBook()
 	server.Run()
 }

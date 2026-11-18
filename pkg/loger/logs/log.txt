@@ -26,3 +26,5 @@ time=2026-11-16T20:35:07.861+03:00 level=INFO msg=:
 time=2026-11-16T20:36:06.283+03:00 level=INFO msg="logger init"
 time=2026-11-16T20:48:36.264+03:00 level=INFO msg="logger init"
 time=2026-11-16T23:32:53.822+03:00 level=INFO msg="logger init"
+time=2026-11-17T22:57:31.826+03:00 level=INFO msg="logger init"
+time=2026-11-17T22:57:31.843+03:00 level=ERROR msg="failed to connect to `user=postgres database=postgres`:\n\t[::1]:5432 (localhost): tls error: server refused TLS connection\n\t127.0.0.1:5432 (localhost): tls error: server refused TLS connection\n\t[::1]:5432 (localhost): failed SASL auth: FATAL: password authentication failed for user \"postgres\" (SQLSTATE 28P01)"
