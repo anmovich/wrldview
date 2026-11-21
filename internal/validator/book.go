@@ -15,3 +15,11 @@ func BookValidate(book models.Book) error {
 	}
 	return nil
 }
+
+func BookValidatePatch(book models.Book) error {
+	if book.ID <= 0 {
+		return errs.ErrBookWrongID
+	}
+
+	return nil
+}

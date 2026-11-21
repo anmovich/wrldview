@@ -16,7 +16,7 @@ func (h Handler) NewBook(c *gin.Context) {
 
 	if err := json.NewDecoder(c.Request.Body).Decode(&book); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{})
-		slog.Error("Error in NewBook, " + err.Error())
+		slog.Error("handler Error in NewBook, " + err.Error())
 		return
 	}
 	if err := validator.BookValidate(book); err != nil {
@@ -24,5 +24,13 @@ func (h Handler) NewBook(c *gin.Context) {
 		slog.Info(err.Error())
 		return
 	}
+
+	id, err := h.serv.NewBook(book)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{})
+	}
+	c.JSON(http.StatusAccepted, gin.H{
+		"ID": id,
+	})
 	fmt.Println(book)
 }
