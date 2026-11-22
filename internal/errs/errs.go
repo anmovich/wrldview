@@ -7,4 +7,7 @@ var (
 	ErrBookWrongTitle  = errors.New("Title cant be null")
 	ErrBookWrongAuthor = errors.New("Author cant be null")
 	ErrBookWrongID     = errors.New("ID cant be <= 0")
+
+	ErrNoID       = errors.New("No id in base")
+	ErrNoRowsFind = errors.New("No rows find")
 )

@@ -17,6 +17,12 @@ func main() {
 	loger.New()
 	slog.Info("logger init")
 	repository := repository.New(context.Background())
+
+	err := repository.CheckID(2)
+	if err != nil {
+		slog.Info(err.Error())
+	}
+
 	service := service.New(*repository)
 	handler := transport.New(*service)
 	server := transport.NewServer(handler)

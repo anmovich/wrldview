@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log/slog"
 	"net/http"
+	"strconv"
 
 	"github.com/anmovich/wrldview/internal/validator"
 	"github.com/anmovich/wrldview/models"
@@ -33,4 +34,37 @@ func (h Handler) NewBook(c *gin.Context) {
 		"ID": id,
 	})
 	fmt.Println(book)
+}
+
+func (h Handler) PATCHBook(c *gin.Context) {
+
+	idstring := c.Request.URL.Query().Get("id")
+	slog.Info(idstring)
+	id, err := strconv.Atoi(idstring)
+
+	if err != nil {
+		slog.Error(err.Error())
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Wrong id type",
+		})
+		return
+	}
+
+	var book models.UpdateBook
+
+	err = json.NewDecoder(c.Request.Body).Decode(&book)
+	if err != nil {
+		slog.Error(err.Error())
+		c.JSON(http.StatusInternalServerError, gin.H{})
+		return
+	}
+
+	err = h.serv.PatchBook(book, id)
+	if err != nil {
+		slog.Error(err.Error())
+		c.JSON(http.StatusInternalServerError, gin.H{})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{})
 }

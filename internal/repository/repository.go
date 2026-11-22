@@ -3,8 +3,10 @@ package repository
 import (
 	"context"
 	"errors"
+	"fmt"
 	"log/slog"
 	"os"
+	"strings"
 
 	"github.com/anmovich/wrldview/models"
 	"github.com/jackc/pgx/v5"
@@ -48,7 +50,65 @@ func (r Repository) NewBook(book models.Book) (int, error) {
 	return id, nil
 }
 
-func (r Repository) CheckID(book models.Book) error {
+func (r Repository) CheckID(id int) error {
 	sqlreq := `SELECT id FROM books WHERE id = $1`
+	row := r.Conn.QueryRow(r.ctx, sqlreq, id)
 
+	var queryId int
+	err := row.Scan(&queryId)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(queryId)
+
+	if queryId != id {
+		return errors.New("Smth wrong")
+	}
+	return nil
+
+}
+
+func (r Repository) PatchBookAuthor(book models.UpdateBook, id int) error {
+	query := `UPDATE books SET `
+
+	counter := 1
+	args := []any{}
+	if book.Author != nil {
+		query += fmt.Sprintf("author = $%d, ", counter)
+		args = append(args, book.Author)
+		counter++
+	}
+
+	if book.Title != nil {
+		query += fmt.Sprintf("title = $%d, ", counter)
+		args = append(args, book.Title)
+		counter++
+	}
+
+	if book.Pages != nil {
+		query += fmt.Sprintf("pages = $%d, ", counter)
+		args = append(args, book.Pages)
+		counter++
+	}
+
+	if len(args) == 0 {
+		return errors.New("No any fields to update")
+	}
+
+	query = strings.TrimSuffix(query, ", ")
+
+	query += fmt.Sprintf(" WHERE id = $%d", counter)
+
+	slog.Info(query)
+	args = append(args, id)
+	tag, err := r.Conn.Exec(r.ctx, query, args...)
+	if err != nil {
+		return err
+	}
+	if tag.RowsAffected() == 0 {
+		return errors.New("No rows find")
+	}
+
+	return nil
 }

@@ -1,6 +1,8 @@
 package validator
 
 import (
+	"errors"
+
 	"github.com/anmovich/wrldview/internal/errs"
 	"github.com/anmovich/wrldview/models"
 )
@@ -21,5 +23,12 @@ func BookValidatePatch(book models.Book) error {
 		return errs.ErrBookWrongID
 	}
 
+	return nil
+}
+
+func IdValidate(id int) error {
+	if id < 0 {
+		return errors.New("Id cant be < 0")
+	}
 	return nil
 }

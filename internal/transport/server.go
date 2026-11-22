@@ -32,6 +32,7 @@ func (s Server) Setup() *gin.Engine {
 	book := router.Group("/book")
 	{
 		book.POST("/", s.h.NewBook)
+		book.PATCH("/", s.h.PATCHBook)
 	}
 
 	return router
