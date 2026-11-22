@@ -15,3 +15,11 @@ PORT = 6767
   "pages": 333,
 }
 ```
+`PATCH /book?id=` - patch book in base. You can use only certain fields.
+```
+{
+  "title": "Fa",
+  "author": "fafa",
+  "pages": 34343
+}
+```
