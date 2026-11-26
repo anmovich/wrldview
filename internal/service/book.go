@@ -43,8 +43,8 @@ func (s Service) PatchBook(book models.UpdateBook, id int) error {
 	return nil
 }
 
+// FIIIIIX!!! Add book id and write cover for it
 func (s Service) UploadCover(body io.ReadSeeker) error {
-
 	buffer := make([]byte, 512)
 	n, err := body.Read(buffer)
 	if err != nil {
