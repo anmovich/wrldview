@@ -88,3 +88,4 @@ time=2026-11-22T16:20:17.260+03:00 level=INFO msg=3
 time=2026-11-22T16:20:17.260+03:00 level=INFO msg="UPDATE books SET author = $1, title = $2 WHERE id = $3"
 time=2026-11-22T16:20:38.706+03:00 level=INFO msg=3
 time=2026-11-22T16:20:38.707+03:00 level=INFO msg="UPDATE books SET pages = $1 WHERE id = $2"
+time=2026-11-26T20:34:27.976+03:00 level=INFO msg="logger init"
