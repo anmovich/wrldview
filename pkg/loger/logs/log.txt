@@ -89,3 +89,27 @@ time=2026-11-22T16:20:17.260+03:00 level=INFO msg="UPDATE books SET author = $1,
 time=2026-11-22T16:20:38.706+03:00 level=INFO msg=3
 time=2026-11-22T16:20:38.707+03:00 level=INFO msg="UPDATE books SET pages = $1 WHERE id = $2"
 time=2026-11-26T20:34:27.976+03:00 level=INFO msg="logger init"
+time=2026-11-26T21:52:59.009+03:00 level=INFO msg="logger init"
+time=2026-11-26T21:57:53.526+03:00 level=INFO msg="logger init"
+time=2026-11-26T21:58:51.162+03:00 level=INFO msg="logger init"
+time=2026-11-26T22:00:26.718+03:00 level=INFO msg=acba8334-ee61-4eba-81bf-7701f3d0c8b0
+time=2026-11-26T22:02:41.416+03:00 level=INFO msg="logger init"
+time=2026-11-26T22:02:43.695+03:00 level=INFO msg=28d0e830-dba7-4445-93fa-41fbfeded255
+time=2026-11-26T22:02:43.695+03:00 level=INFO msg=image/png
+time=2026-11-26T22:03:44.567+03:00 level=INFO msg="logger init"
+time=2026-11-26T22:03:46.331+03:00 level=INFO msg=738f59a8-f155-43a0-9037-9af631b31a45
+time=2026-11-26T22:03:46.331+03:00 level=INFO msg=image/png
+time=2026-11-26T22:03:46.332+03:00 level=ERROR msg="operation error S3: PutObject, resolve auth scheme: resolve endpoint: endpoint rule error, Custom endpoint `localhost:3900` was not a valid URI"
+time=2026-11-26T22:04:08.694+03:00 level=INFO msg="logger init"
+time=2026-11-26T22:04:10.521+03:00 level=INFO msg=a0bb5865-e340-486c-98c1-e4f5262123d8
+time=2026-11-26T22:04:10.522+03:00 level=INFO msg=image/png
+time=2026-11-26T22:10:46.544+03:00 level=INFO msg="logger init"
+time=2026-11-26T22:10:49.188+03:00 level=INFO msg=image/png
+time=2026-11-26T22:10:49.192+03:00 level=INFO msg=e9956e2b-19cf-49ee-8156-12aecb14774d.png
+time=2026-11-26T22:20:40.922+03:00 level=INFO msg="logger init"
+time=2026-11-26T22:20:44.678+03:00 level=INFO msg=image/png
+time=2026-11-26T22:20:44.681+03:00 level=INFO msg=d0b51954-4a51-4518-843e-06f8857cc99e.png
+time=2026-11-26T22:20:44.682+03:00 level=ERROR msg="operation error S3: PutObject, failed to compute payload hash: failed to seek body to start, request stream is not seekable"
+time=2026-11-26T22:23:41.410+03:00 level=INFO msg="logger init"
+time=2026-11-26T22:23:44.092+03:00 level=INFO msg=image/png
+time=2026-11-26T22:23:44.096+03:00 level=INFO msg=6569f143-73a9-407a-a7a5-e8fe63d90449.png

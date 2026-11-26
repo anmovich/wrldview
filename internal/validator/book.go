@@ -32,3 +32,16 @@ func IdValidate(id int) error {
 	}
 	return nil
 }
+
+func ValidateContentType(contentType string) error {
+	approvedContentType := map[string]bool{
+		"image/jpg":  true,
+		"image/png":  true,
+		"image/webp": true,
+	}
+
+	if !approvedContentType[contentType] {
+		return errors.New("Content type not approved")
+	}
+	return nil
+}
