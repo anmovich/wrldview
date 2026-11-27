@@ -113,3 +113,15 @@ time=2026-11-26T22:20:44.682+03:00 level=ERROR msg="operation error S3: PutObjec
 time=2026-11-26T22:23:41.410+03:00 level=INFO msg="logger init"
 time=2026-11-26T22:23:44.092+03:00 level=INFO msg=image/png
 time=2026-11-26T22:23:44.096+03:00 level=INFO msg=6569f143-73a9-407a-a7a5-e8fe63d90449.png
+time=2026-11-26T22:36:38.773+03:00 level=INFO msg="logger init"
+time=2026-11-27T17:35:22.163+03:00 level=INFO msg="logger init"
+time=2026-11-27T17:35:56.424+03:00 level=INFO msg=image/jpeg
+time=2026-11-27T17:35:56.424+03:00 level=ERROR msg="Content type not approved"
+time=2026-11-27T17:38:54.324+03:00 level=INFO msg="logger init"
+time=2026-11-27T17:38:56.923+03:00 level=INFO msg=image/jpeg
+time=2026-11-27T17:38:56.930+03:00 level=INFO msg=0721c0ea-4e78-409d-9e03-1441e9e4ba4d.jfif
+time=2026-11-27T17:38:56.965+03:00 level=INFO msg="UPDATE books SET cover = $1 WHERE id = $2"
+time=2026-11-27T17:50:00.991+03:00 level=INFO msg="logger init"
+time=2026-11-27T17:50:08.340+03:00 level=INFO msg=image/jpeg
+time=2026-11-27T17:50:08.342+03:00 level=INFO msg=9ee6c9c8-e3f5-4c6f-b45b-8ee7ecdc3d4b.jfif
+time=2026-11-27T17:50:08.381+03:00 level=INFO msg="UPDATE books SET cover = $1 WHERE id = $2"

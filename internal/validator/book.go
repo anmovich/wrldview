@@ -35,6 +35,7 @@ func IdValidate(id int) error {
 
 func ValidateContentType(contentType string) error {
 	approvedContentType := map[string]bool{
+		"image/jpeg": true,
 		"image/jpg":  true,
 		"image/png":  true,
 		"image/webp": true,

@@ -34,6 +34,8 @@ func main() {
 	//Init handlers
 	handler := transport.New(*service)
 
+	storage.Delete(context.Background(), "6767676.png")
+
 	//Init server and run
 	server := transport.NewServer(handler)
 	server.Run()

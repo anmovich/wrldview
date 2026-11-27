@@ -19,4 +19,9 @@ type UpdateBook struct {
 	Author *string `json:"author"`
 	Title  *string `json:"title"`
 	Pages  *int    `json:"pages"`
+	Cover  *string `json:"cover"`
+}
+
+type Cover struct {
+	Name *string `json:"name"`
 }

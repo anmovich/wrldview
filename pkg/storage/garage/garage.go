@@ -3,6 +3,7 @@ package garage
 import (
 	"context"
 	"io"
+	"log/slog"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/credentials"
@@ -38,4 +39,33 @@ func (g *GarageS3) Upload(ctx context.Context, name string, body io.Reader, cont
 		},
 	)
 	return err
+}
+
+func (g *GarageS3) Delete(ctx context.Context, name string) error {
+	_, err := g.client.DeleteObject(
+		ctx,
+		&s3.DeleteObjectInput{
+			Bucket: &g.bucket,
+			Key:    &name,
+		},
+	)
+	if err != nil {
+		slog.Error(err.Error())
+		return err
+	}
+	return nil
+}
+
+func (g GarageS3) GetItem(ctx context.Context, name string) (io.Reader, error) {
+	object, err := g.client.GetObject(
+		ctx,
+		&s3.GetObjectInput{
+			Bucket: &g.bucket,
+			Key:    &name,
+		})
+	if err != nil {
+		slog.Error(err.Error())
+		return nil, err
+	}
+	return object.Body, nil
 }

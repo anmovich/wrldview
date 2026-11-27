@@ -71,6 +71,13 @@ func (h Handler) PATCHBook(c *gin.Context) {
 }
 
 func (h Handler) UploadCover(c *gin.Context) {
+	id, err := strconv.Atoi(c.Request.URL.Query().Get("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"err": "No id",
+		})
+		return
+	}
 	fileHeader, err := c.FormFile("file")
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{})
@@ -88,5 +95,21 @@ func (h Handler) UploadCover(c *gin.Context) {
 		slog.Error(err.Error())
 		return
 	}
-	h.serv.UploadCover(file)
+	err = h.serv.UploadCover(file, id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"err": "Unsupported type",
+		})
+		return
+	}
+}
+
+func (h Handler) GETCover(c *gin.Context) {
+	var cover models.Cover
+	if err := json.NewDecoder(c.Request.Body).Decode(&cover); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"err": "no name for cover",
+		})
+	}
+
 }

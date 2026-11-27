@@ -69,7 +69,7 @@ func (r Repository) CheckID(id int) error {
 
 }
 
-func (r Repository) PatchBookAuthor(book models.UpdateBook, id int) error {
+func (r Repository) PatchBook(book models.UpdateBook, id int) error {
 	query := `UPDATE books SET `
 
 	counter := 1
@@ -92,6 +92,12 @@ func (r Repository) PatchBookAuthor(book models.UpdateBook, id int) error {
 		counter++
 	}
 
+	if book.Cover != nil {
+		query += fmt.Sprintf("cover = $%d, ", counter)
+		args = append(args, book.Cover)
+		counter++
+	}
+
 	if len(args) == 0 {
 		return errors.New("No any fields to update")
 	}
@@ -111,4 +117,16 @@ func (r Repository) PatchBookAuthor(book models.UpdateBook, id int) error {
 	}
 
 	return nil
+}
+
+func (r Repository) GETCover(bookId int) (string, error) {
+	query := `SELECT cover FROM public.books WHERE id=$1`
+	var cover string
+	link := r.Conn.QueryRow(r.ctx, query, bookId)
+	if err := link.Scan(&cover); err != nil {
+		slog.Error(err.Error())
+		return "", err
+	}
+	return cover, nil
+
 }
