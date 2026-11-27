@@ -33,8 +33,10 @@ func (s Server) Setup() *gin.Engine {
 	{
 		book.POST("/", s.h.NewBook)
 		book.PATCH("/", s.h.PATCHBook)
+		book.GET("/", s.h.GetBook)
 		book.POST("/cover", s.h.UploadCover)
 		book.GET("/cover", s.h.GETCover)
+		book.DELETE("/cover", s.h.DeleteCover)
 	}
 
 	return router

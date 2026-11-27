@@ -31,7 +31,7 @@ func (h Handler) NewBook(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{})
 	}
-	c.JSON(http.StatusAccepted, gin.H{
+	c.JSON(http.StatusCreated, gin.H{
 		"ID": id,
 	})
 	fmt.Println(book)
@@ -70,6 +70,25 @@ func (h Handler) PATCHBook(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{})
 }
 
+func (h Handler) GetBook(c *gin.Context) {
+	id, err := strconv.Atoi(c.Request.URL.Query().Get("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"err": "no id",
+		})
+		return
+	}
+	book, err := h.serv.GetBook(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"err": "no such id in base",
+		})
+		return
+	}
+
+	c.JSON(http.StatusAccepted, book)
+}
+
 func (h Handler) UploadCover(c *gin.Context) {
 	id, err := strconv.Atoi(c.Request.URL.Query().Get("id"))
 	if err != nil {
@@ -102,14 +121,44 @@ func (h Handler) UploadCover(c *gin.Context) {
 		})
 		return
 	}
+	c.JSON(http.StatusCreated, gin.H{})
 }
 
 func (h Handler) GETCover(c *gin.Context) {
-	var cover models.Cover
-	if err := json.NewDecoder(c.Request.Body).Decode(&cover); err != nil {
+	id, err := strconv.Atoi(c.Request.URL.Query().Get("id"))
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"err": "no name for cover",
+			"err": "no id",
 		})
+		return
 	}
+	cover, err := h.serv.GetCover(id)
+	if err != nil {
+		slog.Error(err.Error())
+		c.JSON(http.StatusInternalServerError, gin.H{})
+		return
+	}
+	c.DataFromReader(
+		http.StatusAccepted,
+		*cover.Size,
+		*cover.ContentType,
+		cover.Body,
+		nil,
+	)
+}
 
+func (h Handler) DeleteCover(c *gin.Context) {
+	id, err := strconv.Atoi(c.Request.URL.Query().Get("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"err": "no id",
+		})
+		return
+	}
+	err = h.serv.DeleteCover(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{})
+		return
+	}
+	c.JSON(http.StatusAccepted, gin.H{})
 }

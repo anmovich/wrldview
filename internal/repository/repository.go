@@ -119,6 +119,22 @@ func (r Repository) PatchBook(book models.UpdateBook, id int) error {
 	return nil
 }
 
+func (r Repository) GetBook(ctx context.Context, bookId int) (*models.Book, error) {
+	query := `SELECT id, title, author, pages, cover FROM books WHERE id=$1`
+	var book models.Book
+	if err := r.Conn.QueryRow(ctx, query, bookId).Scan(
+		&book.ID,
+		&book.Title,
+		&book.Author,
+		&book.Pages,
+		&book.Cover,
+	); err != nil {
+		return nil, err
+	}
+	return &book, nil
+
+}
+
 func (r Repository) GETCover(bookId int) (string, error) {
 	query := `SELECT cover FROM public.books WHERE id=$1`
 	var cover string
@@ -128,5 +144,14 @@ func (r Repository) GETCover(bookId int) (string, error) {
 		return "", err
 	}
 	return cover, nil
+}
 
+func (r Repository) DeleteCover(ctx context.Context, bookId int) error {
+
+	query := `UPDATE books SET cover = NULL WHERE id=$1`
+	if _, err := r.Conn.Exec(ctx, query, bookId); err != nil {
+		slog.Error(err.Error())
+		return err
+	}
+	return nil
 }

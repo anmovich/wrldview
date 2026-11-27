@@ -125,3 +125,19 @@ time=2026-11-27T17:50:00.991+03:00 level=INFO msg="logger init"
 time=2026-11-27T17:50:08.340+03:00 level=INFO msg=image/jpeg
 time=2026-11-27T17:50:08.342+03:00 level=INFO msg=9ee6c9c8-e3f5-4c6f-b45b-8ee7ecdc3d4b.jfif
 time=2026-11-27T17:50:08.381+03:00 level=INFO msg="UPDATE books SET cover = $1 WHERE id = $2"
+time=2026-11-27T18:22:23.151+03:00 level=INFO msg="logger init"
+time=2026-11-27T19:06:38.076+03:00 level=INFO msg="logger init"
+time=2026-11-27T19:06:46.417+03:00 level=ERROR msg="ERROR: syntax error at or near \"cover\" (SQLSTATE 42601)"
+time=2026-11-27T19:06:46.417+03:00 level=ERROR msg="ERROR: syntax error at or near \"cover\" (SQLSTATE 42601)"
+time=2026-11-27T19:07:38.974+03:00 level=INFO msg="logger init"
+time=2026-11-27T19:25:11.350+03:00 level=INFO msg="logger init"
+time=2026-11-27T19:25:31.262+03:00 level=ERROR msg="can't scan into dest[0] (col: id): cannot scan int4 (OID 23) in binary format into int"
+time=2026-11-27T19:30:22.693+03:00 level=ERROR msg="can't scan into dest[0] (col: id): cannot scan int4 (OID 23) in binary format into int"
+time=2026-11-27T19:30:32.205+03:00 level=ERROR msg="can't scan into dest[0] (col: id): cannot scan int4 (OID 23) in binary format into int"
+time=2026-11-27T19:31:53.065+03:00 level=INFO msg="logger init"
+time=2026-11-27T19:31:55.433+03:00 level=ERROR msg="can't scan into dest[0] (col: id): cannot scan int4 (OID 23) in binary format into int64"
+time=2026-11-27T19:34:21.568+03:00 level=INFO msg="logger init"
+time=2026-11-27T19:39:13.106+03:00 level=INFO msg="logger init"
+time=2026-11-27T19:40:21.112+03:00 level=INFO msg=image/jpeg
+time=2026-11-27T19:40:21.116+03:00 level=INFO msg=f12d58e9-152a-42ea-94ec-8c3dd47e5a2f.jfif
+time=2026-11-27T19:40:21.171+03:00 level=INFO msg="UPDATE books SET cover = $1 WHERE id = $2"

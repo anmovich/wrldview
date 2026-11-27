@@ -5,6 +5,7 @@ import (
 	"io"
 	"log/slog"
 
+	"github.com/anmovich/wrldview/models"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
@@ -56,7 +57,7 @@ func (g *GarageS3) Delete(ctx context.Context, name string) error {
 	return nil
 }
 
-func (g GarageS3) GetItem(ctx context.Context, name string) (io.Reader, error) {
+func (g GarageS3) Download(ctx context.Context, name string) (*models.CoverS3, error) {
 	object, err := g.client.GetObject(
 		ctx,
 		&s3.GetObjectInput{
@@ -67,5 +68,10 @@ func (g GarageS3) GetItem(ctx context.Context, name string) (io.Reader, error) {
 		slog.Error(err.Error())
 		return nil, err
 	}
-	return object.Body, nil
+
+	return &models.CoverS3{
+		Size:        object.ContentLength,
+		Body:        object.Body,
+		ContentType: object.ContentType,
+	}, nil
 }

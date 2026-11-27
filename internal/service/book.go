@@ -43,7 +43,15 @@ func (s Service) PatchBook(book models.UpdateBook, id int) error {
 	return nil
 }
 
-// FIIIIIX!!! Add book id and write cover for it
+func (s Service) GetBook(bookId int) (*models.Book, error) {
+	book, err := s.Repo.GetBook(context.Background(), bookId)
+	if err != nil {
+		slog.Error(err.Error())
+		return nil, err
+	}
+	return book, nil
+}
+
 func (s Service) UploadCover(body io.ReadSeeker, bookId int) error {
 	//Create buffer for reader
 	buffer := make([]byte, 512)
@@ -85,5 +93,40 @@ func (s Service) UploadCover(body io.ReadSeeker, bookId int) error {
 		Cover: &name,
 	}
 	s.Repo.PatchBook(book, bookId)
+	return nil
+}
+
+func (s Service) GetCover(bookId int) (*models.CoverS3, error) {
+	//Get cover name from repository
+	cover, err := s.Repo.GETCover(bookId)
+	if err != nil {
+		return nil, err
+	}
+
+	//Get item from s3
+	object, err := s.storage.Download(context.Background(), cover)
+	if err != nil {
+		slog.Error(err.Error())
+		return nil, err
+	}
+	return object, nil
+}
+
+func (s Service) DeleteCover(bookId int) error {
+	cover, err := s.Repo.GETCover(bookId)
+	if err != nil {
+		slog.Error(err.Error())
+		return err
+	}
+	err = s.Repo.DeleteCover(context.Background(), bookId)
+	if err != nil {
+		slog.Error(err.Error())
+		return err
+	}
+	err = s.storage.Delete(context.Background(), cover)
+	if err != nil {
+		slog.Error(err.Error())
+		return err
+	}
 	return nil
 }
