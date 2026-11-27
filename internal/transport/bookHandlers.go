@@ -89,6 +89,8 @@ func (h Handler) GetBook(c *gin.Context) {
 	c.JSON(http.StatusAccepted, book)
 }
 
+const maxFileSize = 5 * 1024 * 1024
+
 func (h Handler) UploadCover(c *gin.Context) {
 	id, err := strconv.Atoi(c.Request.URL.Query().Get("id"))
 	if err != nil {
@@ -101,6 +103,12 @@ func (h Handler) UploadCover(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{})
 		slog.Error(err.Error())
+		return
+	}
+	if fileHeader.Size < maxFileSize {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"err": "size need to be < 5MiB",
+		})
 		return
 	}
 	if fileHeader == nil {
