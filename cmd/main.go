@@ -5,7 +5,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/anmovich/wrldview/internal/repository"
+	"github.com/anmovich/wrldview/internal/repository/postgres"
 	"github.com/anmovich/wrldview/internal/service"
 	"github.com/anmovich/wrldview/internal/transport"
 	"github.com/anmovich/wrldview/pkg/config"
@@ -26,15 +26,13 @@ func main() {
 	storage := garage.NewGarage(os.Getenv("GARAGELINK"), os.Getenv("ACCESSEDKEYGARAGE"), os.Getenv("SECRETKEYGARAGE"), "bookcover")
 
 	//Init repository
-	repository := repository.New(context.Background())
+	repository := postgres.New(context.Background())
 
 	//Init service
 	service := service.New(*repository, storage)
 
 	//Init handlers
 	handler := transport.New(*service)
-
-	storage.Delete(context.Background(), "6767676.png")
 
 	//Init server and run
 	server := transport.NewServer(handler)

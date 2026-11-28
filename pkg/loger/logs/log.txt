@@ -141,3 +141,4 @@ time=2026-11-27T19:39:13.106+03:00 level=INFO msg="logger init"
 time=2026-11-27T19:40:21.112+03:00 level=INFO msg=image/jpeg
 time=2026-11-27T19:40:21.116+03:00 level=INFO msg=f12d58e9-152a-42ea-94ec-8c3dd47e5a2f.jfif
 time=2026-11-27T19:40:21.171+03:00 level=INFO msg="UPDATE books SET cover = $1 WHERE id = $2"
+time=2026-11-28T15:04:58.845+03:00 level=INFO msg="logger init"
